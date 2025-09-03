@@ -1,5 +1,6 @@
 
-import { AppBar, Box, Button, Container, CssBaseline, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, Container, CssBaseline, Icon, TextField, Toolbar, Typography } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search';
 // import './App.css'
 
 function App() {
@@ -22,6 +23,31 @@ function App() {
               <Typography variant="h6">스포츠</Typography>
               <Typography variant="h6">만화</Typography>
             </Box>
+            <SearchIcon />
+            <TextField 
+              sx={{
+                    // 입력 필드의 배경색을 흰색으로 변경
+                    '& .MuiOutlinedInput-root': {
+                      backgroundColor: 'white',
+                      // 필드 테두리를 흰색으로 변경
+                      '& fieldset': {
+                        borderColor: 'white',
+                      },
+                      // 호버 시 테두리 색상
+                      '&:hover fieldset': {
+                        borderColor: 'white',
+                      },
+                      // 포커스 시 테두리 색상
+                      '&.Mui-focused fieldset': {
+                        borderColor: 'white',
+                      },
+                    },
+                    // 입력 라벨을 흰색으로 변경
+                    '& .MuiInputLabel-root': {
+                      color: 'white',
+                    },
+                  }}
+             />
             <Button color="inherit" variant="text" size="large">로그인</Button>
           </Toolbar>
         </AppBar>
