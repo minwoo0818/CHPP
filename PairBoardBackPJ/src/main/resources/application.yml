@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: PairBoardBackPJ
+  datasource:
+    url:
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create

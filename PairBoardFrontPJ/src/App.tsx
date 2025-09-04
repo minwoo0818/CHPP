@@ -2,7 +2,7 @@
 import { AppBar, Box, Button, Container, CssBaseline, Icon, TextField, Toolbar, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import Category from './pages/Category';
-import ResponsiveAppBar from './App bar';
+import ResponsiveAppBar from './Components/App_bar';
 // import './App.css'
 
 function App() {
