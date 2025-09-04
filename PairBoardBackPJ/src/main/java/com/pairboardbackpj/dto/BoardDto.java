@@ -23,5 +23,5 @@ public class BoardDto {
 
     private String PictureUrl;
 
-    private Date updateTime;
+//    private Date regTime;
 }

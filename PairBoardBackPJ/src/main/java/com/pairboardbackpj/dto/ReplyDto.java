@@ -23,5 +23,5 @@ public class ReplyDto {
 
     private Integer TotalCountReply;
 
-    private Date regTime;
+//    private Date regTime;
 }

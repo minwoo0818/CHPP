@@ -29,7 +29,7 @@ public class Reply {
 
     private Integer TotalCountReply;
 
-    private Date regTime;
+//    private Date regTime;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Account_Id", unique = true)
