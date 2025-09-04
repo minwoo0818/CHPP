@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -26,5 +29,20 @@ public class BoardService {
                 .Bad(board.getBad())
                 .PictureUrl(board.getPictureUrl())
                 .build();
+    }
+
+    public List<BoardDto> findAll(){
+        List<BoardDto> boardDtos = new ArrayList<>();
+        for (Board board : boardRepository.findAll()) {
+            boardDtos.add(BoardDto.builder()
+                    .BoardId(board.getBoardId())
+                    .BoardTitle(board.getBoardTitle())
+                    .BoardContent(board.getBoardContent())
+                    .Good(board.getGood())
+                    .Bad(board.getBad())
+                    .PictureUrl(board.getPictureUrl())
+                    .build());
+        }
+        return boardDtos;
     }
 }

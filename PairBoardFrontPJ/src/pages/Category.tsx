@@ -1,35 +1,51 @@
-import { Pagination } from "@mui/material";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CardActionArea from '@mui/material/CardActionArea';
+import { GetBoards } from '../Components/CategoryApi';
+import { useEffect, useState } from 'react';
+import type { Board } from '../type';
 
 export default function Category() {
- 
-// const ActivityCard = (props)=>{
-  
-//    return (
-//  <CardContent>
-//                 <CardTitle>{props.activity.title}</CardTitle>
-//                 <CardDetail>
-//                     {props.activity.content}
-//                 </CardDetail>
-//                 <CardDetail>
-//                     작성자 : {props.activity.email}
-//                 </CardDetail>
-//                 <CardDetail>
-//                     작성일자 : {props.activity.createdDate}
-//                 </CardDetail>
-//                 <CardDetail>좋아요 : {props.activity.like}</CardDetail>
-//                 <button>자세히 보기</button>
-//             </CardContent>
-//   );
-// }
 
-// export default ActivityCard;
+    const [boarddata,setBoardData] = useState<Board[]>([]);
 
-// https://velog.io/@sjkang930/react-cjm2dzbh
-    
-    return(
-        <>
-            
-            <Pagination count={10} />
-        </>
-    )
+const loadBoardData = () => {
+    GetBoards()
+    .then(res => {
+        console.log("API 응답:", res);
+        setBoardData(res);
+    })
+    .catch(err => console.log(err));
+}
+
+useEffect(() => {
+    loadBoardData();
+}, []);
+
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image="/static/images/cards/contemplative-reptile.jpg"
+          alt="green iguana"
+        />
+        <CardContent>
+          {Array.isArray(boarddata) && boarddata.map((board) => (
+            <div key={board.boardid}>
+                <Typography gutterBottom variant="h5" component="div">
+                    {board.boardtitle}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                    {board.boardcontent}
+                </Typography>
+            </div>
+      ))}
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
 }
