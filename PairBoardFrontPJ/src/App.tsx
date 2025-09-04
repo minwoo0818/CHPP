@@ -1,6 +1,8 @@
 
 import { AppBar, Box, Button, Container, CssBaseline, Icon, TextField, Toolbar, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
+import Category from './pages/Category';
+import ResponsiveAppBar from './App bar';
 // import './App.css'
 
 function App() {
@@ -8,11 +10,11 @@ function App() {
 
   return (
     <>
-      <Container maxWidth='xl'>
+      {/* <Container maxWidth='xl'>
         <CssBaseline />
         <AppBar position='static'>
           <Toolbar>
-            <Typography variant="h4" sx={{mr: 7}} >
+            <Typography variant="h4" sx={{mr: 7}}  href="#app-bar-with-responsive-menu">
                 게시판
               </Typography>
             <Box display="flex" alignItems="center" gap={3} sx={{ flexGrow: 1 }}>
@@ -52,6 +54,8 @@ function App() {
           </Toolbar>
         </AppBar>
       </Container>
+      <Category></Category> */}
+      <ResponsiveAppBar></ResponsiveAppBar>
     </>
   )
 }
