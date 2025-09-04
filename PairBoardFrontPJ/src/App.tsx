@@ -3,13 +3,14 @@ import { AppBar, Box, Button, Container, CssBaseline, Icon, TextField, Toolbar, 
 import SearchIcon from '@mui/icons-material/Search';
 import Category from './pages/Category';
 import ResponsiveAppBar from './Components/App_bar';
+import Board from './pages/Board';
 // import './App.css'
 
-function App() {
+// function App() {
 
 
-  return (
-    <>
+//   return (
+//     <>
       {/* <Container maxWidth='xl'>
         <CssBaseline />
         <AppBar position='static'>
@@ -55,9 +56,30 @@ function App() {
         </AppBar>
       </Container>
       <Category></Category> */}
-      <ResponsiveAppBar></ResponsiveAppBar>
-    </>
+      {/* <ResponsiveAppBar></ResponsiveAppBar> */}
+    {/* </>
   )
 }
 
-export default App
+export default App */}
+
+
+const App: React.FC = () => {
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>옛날 게시판</h1>
+      <Board
+        title="안녕하세요, 첫 게시물입니다!"
+        content="이것은 React와 TypeScript로 만든 옛날 감성 포스트입니다. 이미지도 추가해봤어요."
+        imageSrc="https://via.placeholder.com/600x300"
+        imageAlt="placeholder"
+      />
+      <Board
+        title="두 번째 게시물입니다!"
+        content="이 포스트는 이미지가 없는 버전이에요. 내용만 있답니다."
+      />
+    </div>
+  );
+};
+
+export default App;
