@@ -15,7 +15,9 @@ import lombok.NoArgsConstructor;
 public class Account {
 
     @Id
+    @Column(name = "Account_Id")
     private String id;
+
     private String name;
     private String password;
 
@@ -27,6 +29,5 @@ public class Account {
     private Integer phoneNumber;
     private Integer level;
 
-    @OneToMany
-    private Board BoardId;
+
 }

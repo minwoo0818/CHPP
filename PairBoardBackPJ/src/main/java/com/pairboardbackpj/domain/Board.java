@@ -27,4 +27,9 @@ public class Board {
     private Integer Bad;
 
     private String PictureUrl;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Account_Id", unique = true)
+    private Account account;
+
 }
