@@ -12,19 +12,19 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = "http://localhost:5173")
 public class BoardController {
 
-    private final BoardService BoardService;
+    private final BoardService boardService;
 
-    @GetMapping("/boards/{BoardId}")
+    @GetMapping("/boards/{boardId}")
     public BoardDto getBoards(@PathVariable Integer BoardId) {
-        return BoardService.findBoardId(BoardId);
+        return boardService.findBoardById(BoardId);
     }
 
     @GetMapping("/category")
     public List<BoardDto> getBoards() {
-        return BoardService.findAll();
+        return boardService.findAll();
     }
 
 }

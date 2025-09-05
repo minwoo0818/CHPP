@@ -7,17 +7,17 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class AccountDto {
-    private String Id;
+    private String id;
 
-    private String Name;
+    private String name;
 
-    private String Password;
+    private String password;
 
-    private String NickName;
+    private String nickName;
 
-    private Integer ResidentNumber;
+    private Integer residentNumber;
 
-    private Integer PhoneNumber;
+    private Integer phoneNumber;
 
-    private Integer Level;
+    private Integer level;
 }

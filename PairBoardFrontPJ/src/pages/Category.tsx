@@ -9,7 +9,8 @@ import type { Board } from '../type';
 
 export default function Category() {
 
-    const [boarddata,setBoardData] = useState<Board[]>([]);
+    const [boardData,setBoardData] = useState<Board[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
 const loadBoardData = () => {
     GetBoards()
@@ -17,35 +18,51 @@ const loadBoardData = () => {
         console.log("API 응답:", res);
         setBoardData(res);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
+    .finally(() => {
+      setIsLoading(false);
+    });
 }
 
 useEffect(() => {
     loadBoardData();
 }, []);
 
+  if (isLoading)
+  {
+    return <div> 게시물 목록을 불러오는 중입니다...</div>;
+  }
+
+  if (!Array.isArray(boardData) || boardData.length === 0)
+  {
+    return <div>게시물이 없습니다.</div>
+  }
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <div style = {{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center'}}>
+    { boardData.map((board) => (
+    <Card sx={{ Width: 345 }} key={board.boardId}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
+          image="/static/images/이광수3.jpg"
+          alt={board.boardTitle}
         />
-        <CardContent>
-          {Array.isArray(boarddata) && boarddata.map((board) => (
-            <div key={board.boardid}>
+        <CardContent>         
+            
                 <Typography gutterBottom variant="h5" component="div">
-                    {board.boardtitle}
+                    {board.boardTitle}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    {board.boardcontent}
+                    {board.boardContent}
                 </Typography>
-            </div>
-      ))}
+            
+      
         </CardContent>
       </CardActionArea>
     </Card>
+    ))}
+    </div>
   );
 }

@@ -11,17 +11,17 @@ import java.util.Date;
 @Builder
 public class ReplyDto {
 
-    private Integer ReplyId;
+    private Integer replyId;
 
-    private String ReplyContent;
+    private String replyContent;
 
-    private Integer ReplyGood;
+    private Integer replyGood;
 
-    private Integer ReplyBad;
+    private Integer replyBad;
 
-    private Integer ReplyParentId;
+    private Integer replyParentId;
 
-    private Integer TotalCountReply;
+    private Integer totalCountReply;
 
 //    private Date regTime;
 }

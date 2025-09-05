@@ -18,16 +18,16 @@ import java.util.List;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    public BoardDto findBoardId(Integer BoardId){
-        Board board = boardRepository.findById(BoardId).orElseThrow(EntityNotFoundException::new);
+    public BoardDto findBoardById(Integer boardId){
+        Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
 
         return BoardDto.builder()
-                .BoardId(board.getBoardId())
-                .BoardTitle(board.getBoardTitle())
-                .BoardContent(board.getBoardContent())
-                .Good(board.getGood())
-                .Bad(board.getBad())
-                .PictureUrl(board.getPictureUrl())
+                .boardId(board.getBoardId())
+                .boardTitle(board.getBoardTitle())
+                .boardContent(board.getBoardContent())
+                .good(board.getGood())
+                .bad(board.getBad())
+                .pictureUrl(board.getPictureUrl())
                 .build();
     }
 
@@ -35,12 +35,12 @@ public class BoardService {
         List<BoardDto> boardDtos = new ArrayList<>();
         for (Board board : boardRepository.findAll()) {
             boardDtos.add(BoardDto.builder()
-                    .BoardId(board.getBoardId())
-                    .BoardTitle(board.getBoardTitle())
-                    .BoardContent(board.getBoardContent())
-                    .Good(board.getGood())
-                    .Bad(board.getBad())
-                    .PictureUrl(board.getPictureUrl())
+                    .boardId(board.getBoardId())
+                    .boardTitle(board.getBoardTitle())
+                    .boardContent(board.getBoardContent())
+                    .good(board.getGood())
+                    .bad(board.getBad())
+                    .pictureUrl(board.getPictureUrl())
                     .build());
         }
         return boardDtos;

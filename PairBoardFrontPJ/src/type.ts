@@ -1,8 +1,8 @@
 export type Board = {
-    boardid?: number;
-    boardtitle: string;
-    boardcontent: string;
+    boardId?: number;
+    boardTitle: string;
+    boardContent: string;
     good: number;
     bad: number;
-    pictureurl: string;
+    pictureUrl: string;
 }

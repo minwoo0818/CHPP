@@ -11,17 +11,17 @@ import java.util.Date;
 @Builder
 public class BoardDto {
 
-    private Integer BoardId;
+    private Integer boardId;
 
-    private String BoardTitle;
+    private String boardTitle;
 
-    private String BoardContent;
+    private String boardContent;
 
-    private Integer Good;
+    private Integer good;
 
-    private Integer Bad;
+    private Integer bad;
 
-    private String PictureUrl;
+    private String pictureUrl;
 
 //    private Date regTime;
 }
