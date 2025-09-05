@@ -7,6 +7,8 @@ import { GetBoards } from '../Components/CategoryApi';
 import { useEffect, useState } from 'react';
 import type { Board } from '../type';
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 export default function Category() {
 
     const [boardData,setBoardData] = useState<Board[]>([]);
@@ -40,29 +42,29 @@ useEffect(() => {
 
   return (
     <div style = {{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center'}}>
-    { boardData.map((board) => (
-    <Card sx={{ Width: 345 }} key={board.boardId}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/이광수3.jpg"
-          alt={board.boardTitle}
-        />
-        <CardContent>         
-            
-                <Typography gutterBottom variant="h5" component="div">
-                    {board.boardTitle}
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    {board.boardContent}
-                </Typography>
-            
-      
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    ))}
+      { boardData.map((board) => (
+        <Card sx={{ width: 345,height: 250 }} key={board.boardId}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="140"
+              image={`${BASE_URL}${board.pictureUrl}`}
+              alt={board.boardTitle}
+            />
+            <CardContent>         
+              <Typography gutterBottom variant="h5" component="div">
+                  {board.boardTitle}
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                  {board.boardStatus}
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  {board.boardContent}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      ))} 
     </div>
   );
 }

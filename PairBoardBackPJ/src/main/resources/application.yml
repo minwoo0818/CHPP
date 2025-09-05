@@ -1,3 +1,6 @@
+itemImgLocation: C:/CHPP/images
+uploadPath: file:///C:/CHPP/images
+
 spring:
   application:
     name: PairBoardBackPJ

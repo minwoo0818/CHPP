@@ -2,6 +2,7 @@ package com.pairboardbackpj.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -23,5 +24,7 @@ public class BoardDto {
 
     private String pictureUrl;
 
-//    private Date regTime;
+    private Enum boardStatus;
+
+//    private LocalDateTime regTime;
 }

@@ -28,6 +28,7 @@ public class BoardService {
                 .good(board.getGood())
                 .bad(board.getBad())
                 .pictureUrl(board.getPictureUrl())
+                .boardStatus(board.getBoardStatus())
                 .build();
     }
 
@@ -41,6 +42,7 @@ public class BoardService {
                     .good(board.getGood())
                     .bad(board.getBad())
                     .pictureUrl(board.getPictureUrl())
+                    .boardStatus(board.getBoardStatus())
                     .build());
         }
         return boardDtos;

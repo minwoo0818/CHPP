@@ -1,5 +1,6 @@
 package com.pairboardbackpj.domain;
 
+import com.pairboardbackpj.constant.BoardStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,17 +17,20 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer BoardId;
+    private Integer boardId;
 
-    private String BoardTitle;
+    private String boardTitle;
 
-    private String BoardContent;
+    private String boardContent;
 
-    private Integer Good;
+    private Integer good;
 
-    private Integer Bad;
+    private Integer bad;
 
-    private String PictureUrl;
+    private String pictureUrl;
+
+    @Enumerated(EnumType.STRING)
+    private BoardStatus boardStatus;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Account_Id", unique = true)
