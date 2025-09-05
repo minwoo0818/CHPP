@@ -4,7 +4,7 @@
 import Category from './pages/Category';
 import ResponsiveAppBar from './Components/App_bar';
 import Main from './pages/Main';
-import { Route, Routes } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 // import Board from './pages/Board';
 // import './App.css'
 
@@ -15,10 +15,10 @@ function App() {
   return (
     <>
       <ResponsiveAppBar></ResponsiveAppBar>
-      <Routes>
-        <Route path='/' element={<Main></Main>}></Route>
-        <Route path='/category/:type' element={<Category></Category>}></Route>
-      </Routes>
+        <Routes>
+          <Route path='/' element={<Main></Main>}></Route>
+          <Route path='/category/:type' element={<Category></Category>}></Route>
+        </Routes>
     </>
   )
 }

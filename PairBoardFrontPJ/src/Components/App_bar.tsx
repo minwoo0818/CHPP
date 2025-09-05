@@ -118,9 +118,9 @@ function ResponsiveAppBar() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {/* pages 배열을 순회하며 메뉴 아이템들을 렌더링합니다. */}
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+              {navItems.map((item) => (
+                <MenuItem key={item.name} onClick={() => handleClick(item.path)}>
+                  <Typography sx={{ textAlign: 'center' }}>{item.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
