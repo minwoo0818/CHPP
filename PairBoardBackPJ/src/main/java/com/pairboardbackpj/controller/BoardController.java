@@ -1,5 +1,6 @@
 package com.pairboardbackpj.controller;
 
+import com.pairboardbackpj.constant.BoardStatus;
 import com.pairboardbackpj.dto.BoardDto;
 import com.pairboardbackpj.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +20,18 @@ public class BoardController {
 
     @GetMapping("/boards/{boardId}")
     public BoardDto getBoards(@PathVariable Integer BoardId) {
-        return boardService.findBoardById(BoardId);
+        return boardService.findByBoardId(BoardId);
     }
 
-    @GetMapping("/category")
+    @GetMapping("/category/all")
     public List<BoardDto> getBoards() {
         return boardService.findAll();
     }
 
+    @GetMapping("/category/{boardStatus}")
+    public List<BoardDto> getBoardsByStatus(@PathVariable String boardStatus) {
+        BoardStatus status = BoardStatus.valueOf(boardStatus.toUpperCase());
+        return boardService.findByboardStatus(status);
+
+    }
 }

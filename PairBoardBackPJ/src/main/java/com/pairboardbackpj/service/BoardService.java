@@ -1,5 +1,6 @@
 package com.pairboardbackpj.service;
 
+import com.pairboardbackpj.constant.BoardStatus;
 import com.pairboardbackpj.domain.Board;
 import com.pairboardbackpj.domain.repository.BoardRepository;
 import com.pairboardbackpj.dto.BoardDto;
@@ -18,7 +19,7 @@ import java.util.List;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    public BoardDto findBoardById(Integer boardId){
+    public BoardDto findByBoardId(Integer boardId){
         Board board = boardRepository.findById(boardId).orElseThrow(EntityNotFoundException::new);
 
         return BoardDto.builder()
@@ -46,5 +47,23 @@ public class BoardService {
                     .build());
         }
         return boardDtos;
+    }
+
+    public List<BoardDto> findByboardStatus(BoardStatus boardStatus){
+        List<Board> boardList = boardRepository.findByBoardStatus(boardStatus);
+        List<BoardDto> boardDtosList = new ArrayList<>();
+
+        for (Board board : boardList) {
+            boardDtosList.add(BoardDto.builder()
+                    .boardId(board.getBoardId())
+                    .boardTitle(board.getBoardTitle())
+                    .boardContent(board.getBoardContent())
+                    .good(board.getGood())
+                    .bad(board.getBad())
+                    .pictureUrl(board.getPictureUrl())
+                    .boardStatus(board.getBoardStatus())
+                    .build());
+        }
+        return boardDtosList;
     }
 }

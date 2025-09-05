@@ -12,9 +12,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from 'react-router-dom';
 
 // 페이지 목록과 사용자 설정 메뉴 목록을 배열로 정의합니다.
-const pages = ['공지사항', '만화', '게임', '자동차', '스포츠', '영화'];
+const pages = ['공지사항', '모든게시물', '만화', '게임', '자동차', '스포츠', '영화'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -54,7 +55,7 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -110,7 +111,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -127,15 +128,27 @@ function ResponsiveAppBar() {
 
           {/* 창이 커졌을 때(md 이상) 보이는 페이지 버튼들입니다. */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            {pages.map((page) => {
+              let path = "/";
+              if (page === "공지사항") path = "/category/notice";
+              if (page === "만화") path = "/category/comic";
+              if (page === "게임") path = "/category/game";
+              if (page === "자동차") path = "/category/car";
+              if (page === "스포츠") path = "/category/sports";
+              if (page === "영화") path = "/category/movie";
+              if (page === "모든게시물") path = "/category/all";
+
+              return (
+                <Button
+                  key={page}
+                  component={Link}
+                  to={path}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              );
+            })}
           </Box>
 
           {/* 사용자 설정 메뉴와 아바타입니다. */}
