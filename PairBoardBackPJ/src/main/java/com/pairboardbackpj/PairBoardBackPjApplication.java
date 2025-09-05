@@ -25,7 +25,7 @@ public class PairBoardBackPjApplication implements CommandLineRunner {
                         .boardContent("안녕하세요! 더미 데이터 첫 번째 글입니다.")
                         .good(10)
                         .bad(1)
-                        .pictureUrl("/images/개드립 페이지 html.jpg")
+                        .pictureUrl("/images/개드립 페이지 html.png")
                         .boardStatus(BoardStatus.GAME)
                         .build());
 
@@ -34,7 +34,7 @@ public class PairBoardBackPjApplication implements CommandLineRunner {
                         .boardContent("테스트용으로 작성한 두 번째 글입니다.")
                         .good(5)
                         .bad(0)
-                        .pictureUrl("/images/img2.jpg")
+                        .pictureUrl("/images/abc3.jpg")
                         .boardStatus(BoardStatus.SPORTS)
                         .build());
 
