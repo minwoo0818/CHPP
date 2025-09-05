@@ -31,7 +31,7 @@ const loadBoardData = () => {
 
 useEffect(() => {
   loadBoardData();
-}, []);
+}, [type]);
 
 if (isLoading)
 {

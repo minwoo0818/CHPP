@@ -11,18 +11,13 @@ import { Route, Routes } from 'react-router-dom';
 function App() {
 
 
+
   return (
     <>
       <ResponsiveAppBar></ResponsiveAppBar>
       <Routes>
         <Route path='/' element={<Main></Main>}></Route>
         <Route path='/category/:type' element={<Category></Category>}></Route>
-        <Route></Route>
-        <Route></Route>
-        <Route></Route>
-        <Route></Route>
-        <Route></Route>
-        <Route></Route>
       </Routes>
     </>
   )

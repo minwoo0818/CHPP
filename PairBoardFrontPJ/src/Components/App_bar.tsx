@@ -12,11 +12,22 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 // 페이지 목록과 사용자 설정 메뉴 목록을 배열로 정의합니다.
 const pages = ['공지사항', '모든게시물', '만화', '게임', '자동차', '스포츠', '영화'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const navItems = [
+  { name: "공지사항", path: "/category/notice" },
+  { name: "만화", path: "/category/comic" },
+  { name: "게임", path: "/category/game" },
+  { name: "자동차", path: "/category/car" },
+  { name: "스포츠", path: "/category/sports" },
+  { name: "영화", path: "/category/movie" },
+  { name: "모든게시물", path: "/category/all" },
+];
+  
 
 function ResponsiveAppBar() {
   // 모바일 메뉴(햄버거 메뉴)의 앵커 엘리먼트 상태를 관리합니다.
@@ -41,6 +52,15 @@ function ResponsiveAppBar() {
   // 사용자 설정 메뉴를 닫는 함수입니다.
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const navigate = useNavigate(); // useNavigate 훅을 사용해 navigate 함수를 가져옵니다.
+
+  const handleClick = (path) => {
+    // 버튼 클릭 시 호출되는 함수입니다.
+    console.log(`${path}로 페이지 이동 시작...`);
+    // navigate 함수를 사용해 동적으로 페이지를 이동합니다.
+    navigate(path);
   };
 
   return (
@@ -125,30 +145,18 @@ function ResponsiveAppBar() {
           >
             캣드립
           </Typography>
-
+            
           {/* 창이 커졌을 때(md 이상) 보이는 페이지 버튼들입니다. */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => {
-              let path = "/";
-              if (page === "공지사항") path = "/category/notice";
-              if (page === "만화") path = "/category/comic";
-              if (page === "게임") path = "/category/game";
-              if (page === "자동차") path = "/category/car";
-              if (page === "스포츠") path = "/category/sports";
-              if (page === "영화") path = "/category/movie";
-              if (page === "모든게시물") path = "/category/all";
-
-              return (
+            {navItems.map((item) => (          
+            
                 <Button
-                  key={page}
-                  component={Link}
-                  to={path}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page}
+                  key={item.name}
+                  onClick={() => handleClick(item.path)}
+                  sx={{ my: 2, color: 'white', display: 'block' }}>
+                  {item.name}
                 </Button>
-              );
-            })}
+              ))}
           </Box>
 
           {/* 사용자 설정 메뉴와 아바타입니다. */}
