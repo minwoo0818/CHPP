@@ -1,4 +1,4 @@
-export type Board = {
+export type Board_Type = {
     boardId?: number;
     boardTitle: string;
     boardContent: string;

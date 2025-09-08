@@ -5,9 +5,11 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import { Pagination, PaginationItem } from '@mui/material';
 import { GetBoards } from '../api/CategoryApi';
-import { useEffect, useState } from 'react';
-import type { Board } from '../type';
+import { useEffect, useRef, useState } from 'react';
+import type { Board_Type } from '../type';
 import { useLocation, useParams, Link } from 'react-router-dom';
+import type { BoardHandle } from '../Components/Board';
+import Board from '../Components/Board';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 const ITEMS_PER_PAGE = 20;
@@ -16,9 +18,10 @@ export default function Category() {
   const { type } = useParams();
   const location = useLocation();
   const query = new URLSearchParams(location.search);
+  const boardRef = useRef<BoardHandle>(null);
   const page = parseInt(query.get('page') || '1', 10);
 
-  const [boardData, setBoardData] = useState<Board[]>([]);
+  const [boardData, setBoardData] = useState<Board_Type[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const loadBoardData = () => {
@@ -54,7 +57,8 @@ export default function Category() {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
         {paginatedData.map((board) => (
           <Card sx={{ width: 345, height: 250 }} key={board.boardId}>
-            <CardActionArea>
+            <CardActionArea onClick={() => boardRef.current?.handleOpen()}>
+              <Board ref={boardRef}></Board>
               <CardMedia
                 component="img"
                 height="140"
