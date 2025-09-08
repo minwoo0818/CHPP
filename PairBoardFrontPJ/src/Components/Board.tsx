@@ -99,7 +99,12 @@ const Board = forwardRef<BoardHandle, BoardProps>(({BoardData, loadBoardData}, r
         <>
         <Dialog open={open} onClose={handleClose}
                 sx={{'& .MuiDialog-paper' : { maxWidth: 'md', width: '80%'}}}>
-                <DialogTitle>{boardData.boardTitle}</DialogTitle>
+                <DialogTitle>
+                    <TextField label= "글제목"
+                                        name="boardTitle"
+                                        value={boardData.boardTitle}
+                                        onChange={handleChange} />
+                </DialogTitle>
                 <DialogContent>                
                 <Stack spacing={2} mt={1}>
                     <TextField label="카테고리"
