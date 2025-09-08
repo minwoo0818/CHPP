@@ -22,6 +22,7 @@ export default function Category() {
   const page = parseInt(query.get('page') || '1', 10);
 
   const [boardData, setBoardData] = useState<Board_Type[]>([]);
+  const [selectedBoard, setSelectedBoard] = useState<Board_Type | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const loadBoardData = () => {
@@ -57,8 +58,10 @@ export default function Category() {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
         {paginatedData.map((board) => (
           <Card sx={{ width: 345, height: 250 }} key={board.boardId}>
-            <CardActionArea onClick={() => boardRef.current?.handleOpen()}>
-              <Board ref={boardRef}></Board>
+            <CardActionArea onClick={() => {
+              setSelectedBoard(board);
+              boardRef.current?.handleOpen()
+              }}>
               <CardMedia
                 component="img"
                 height="140"
@@ -80,7 +83,8 @@ export default function Category() {
           </Card>
         ))}
       </div>
-
+      {/* ✅ 선택된 게시물만 있을 때 Board 렌더링 */}
+      {selectedBoard && (<Board ref={boardRef} BoardData={selectedBoard} loadBoardData={loadBoardData}></Board>)}
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
         <Pagination
           page={page}
