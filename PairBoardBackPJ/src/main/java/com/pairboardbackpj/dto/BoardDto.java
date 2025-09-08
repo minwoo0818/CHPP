@@ -1,5 +1,6 @@
 package com.pairboardbackpj.dto;
 
+import com.pairboardbackpj.constant.BoardStatus;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ public class BoardDto {
 
     private String pictureUrl;
 
-    private Enum boardStatus;
+    private BoardStatus boardStatus;
 
 //    private LocalDateTime regTime;
 }

@@ -1,6 +1,7 @@
 package com.pairboardbackpj.domain;
 
 import com.pairboardbackpj.constant.BoardStatus;
+import com.pairboardbackpj.dto.BoardDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,4 +37,12 @@ public class Board {
     @JoinColumn(name = "Account_Id", unique = true)
     private Account account;
 
+    public void updateBoard(BoardDto boardDto){
+        this.boardTitle = boardDto.getBoardTitle();
+        this.boardContent = boardDto.getBoardContent();
+        this.good = boardDto.getGood();
+        this.bad = boardDto.getBad();
+        this.pictureUrl = boardDto.getPictureUrl();
+        this.boardStatus = boardDto.getBoardStatus();
+    }
 }

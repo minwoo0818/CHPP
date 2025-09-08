@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface PreviewImage {
   file: File | null;
   previewUrl: string | null;
 }
 
-const ItemImageUploader: React.FC = () => {
+type BoardProps = {
+    BoardData: Board_Type;
+    loadBoardData: () => void;
+}
+
+const ItemImageUploader: React.FC<BoardProps> = ({BoardData,loadBoardData}) => {
   // 5개의 이미지 슬롯을 미리 준비
   const [images, setImages] = useState<PreviewImage[]>(
     Array.from({ length: 5 }, () => ({ file: null, previewUrl: null }))
   );
+
+  useEffect(() => {
+    if (BoardData?.pictureUrl) {
+      // ✅ 단일 이미지라면 첫 번째 슬롯에만 반영
+      setImages((prev) => {
+        const newImages = [...prev];
+        newImages[0] = {
+          file: null, // 서버에서 온 건 File 객체가 아님
+          previewUrl: BoardData.pictureUrl.startsWith("http")
+            ? BoardData.pictureUrl
+            : `${import.meta.env.VITE_API_URL}${BoardData.pictureUrl}`, // 상대경로면 BASE_URL 붙여줌
+        };
+        return newImages;
+      });
+    }
+        // 만약 BoardData가 여러 장 이미지를 가진다면 (예: BoardData.images: string[])
+    // setImages(BoardData.images.map(url => ({ file: null, previewUrl: url })));
+  }, [BoardData]);
 
   /** 파일 선택 시 실행 */
   const handleFileChange = (index: number, file: File | null) => {

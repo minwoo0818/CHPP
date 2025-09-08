@@ -4,10 +4,7 @@ import com.pairboardbackpj.constant.BoardStatus;
 import com.pairboardbackpj.dto.BoardDto;
 import com.pairboardbackpj.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +29,10 @@ public class BoardController {
     public List<BoardDto> getBoardsByStatus(@PathVariable String boardStatus) {
         BoardStatus status = BoardStatus.valueOf(boardStatus.toUpperCase());
         return boardService.findByboardStatus(status);
+    }
 
+    @PutMapping("/category")
+    public void updateBoard(@RequestBody BoardDto boardDto) {
+        boardService.updateBoard(boardDto);
     }
 }

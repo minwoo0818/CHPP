@@ -66,4 +66,9 @@ public class BoardService {
         }
         return boardDtosList;
     }
+
+    public void updateBoard(BoardDto boardDto){
+        Board board = boardRepository.findById(boardDto.getBoardId()).orElseThrow(EntityNotFoundException::new);
+        board.updateBoard(boardDto);
+    }
 }
