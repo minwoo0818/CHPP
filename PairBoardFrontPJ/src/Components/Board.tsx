@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, IconButton, Radio, RadioGroup, Stack, TextField, Typography } from "@mui/material";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { BoardStatus, type Board_Type } from "../type";
 import { ThumbDownAlt, ThumbUpAlt } from "@mui/icons-material";
@@ -105,12 +105,25 @@ const Board = forwardRef<BoardHandle, BoardProps>(({BoardData, loadBoardData}, r
                                         value={boardData.boardTitle}
                                         onChange={handleChange} />
                 </DialogTitle>
-                <DialogContent>                
+                <DialogContent>  
+                    <FormControl>
+                        <FormLabel id="demo-row-radio-buttons-group-label">카테고리</FormLabel>
+                            <RadioGroup
+                                row
+                                aria-labelledby="board-status-group-label"
+                                name="boardStatus"
+                                value={boardData.boardStatus}   // ✅ 현재 선택된 값 반영
+                                onChange={handleChange}         // ✅ boardData 상태 갱신
+                            >
+                            <FormControlLabel value="NOTICE" control={<Radio />} label="NOTICE" />
+                            <FormControlLabel value="COMIC" control={<Radio />} label="COMIC" />
+                            <FormControlLabel value="GAME" control={<Radio />} label="GAME" />
+                            <FormControlLabel value="CAR" control={<Radio />} label="CAR" />
+                            <FormControlLabel value="SPORTS" control={<Radio />} label="SPORTS" />
+                            <FormControlLabel value="MOVIE" control={<Radio />} label="MOVIE" />
+                        </RadioGroup>
+                    </FormControl>              
                 <Stack spacing={2} mt={1}>
-                    <TextField label="카테고리"
-                               name="boardStatus"
-                               value={boardData.boardStatus}
-                               onChange={handleChange} />
                     <TextField label="글내용"
                                name="boardContent"
                                value={boardData.boardContent}
@@ -128,20 +141,8 @@ const Board = forwardRef<BoardHandle, BoardProps>(({BoardData, loadBoardData}, r
                             </IconButton>
                             <Typography variant="body1">{boardData.bad}</Typography>
                         </Stack>
-                    {/* <TextField label="좋아요"
-                               name="good"
-                               value={BoardData.good}
-                               onChange={handleChange} />
-                    <TextField label="싫어요"
-                               name="bad"
-                               value={BoardData.bad}
-                               onChange={handleChange} /> */}
-                    {/* <TextField label="이미지"
-                               name="pictureUrl"
-                               value={BoardData.pictureUrl}
-                               onChange={handleChange} />                      */}
-                               <ItemImageUploader BoardData={boardData} loadBoardData={loadBoardData}/>
-                </Stack>
+                        <ItemImageUploader BoardData={boardData} loadBoardData={loadBoardData}/>
+                    </Stack>
                 </DialogContent>
                 <DialogActions>
                             <Button onClick={handleSave}>저장</Button>
