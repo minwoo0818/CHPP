@@ -1,4 +1,4 @@
-package com.pairboardbackpj.properties;
+package com.pairboardbackpj.Components;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
