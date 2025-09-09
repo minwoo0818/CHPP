@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .cors(withDefaults()) // ← 이거 추가!
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**","/category/**","/images/**").permitAll()
+                        .requestMatchers("/auth/**","/category/**","/images/**","/upload").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
