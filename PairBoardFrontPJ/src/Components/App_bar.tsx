@@ -12,8 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import type { BoardHandle } from './Board';
+import { useNavigate } from 'react-router-dom';
+
 
 // 페이지 목록과 사용자 설정 메뉴 목록을 배열로 정의합니다.
 const pages = ['공지사항', '모든게시물', '만화', '게임', '자동차', '스포츠', '영화'];
@@ -27,8 +27,7 @@ const navItems = [
   { name: "스포츠", path: "/category/sports" },
   { name: "영화", path: "/category/movie" },
   { name: "모든게시물", path: "/category/all" },  
-];
-  
+];  
 
 function ResponsiveAppBar() {
   // 모바일 메뉴(햄버거 메뉴)의 앵커 엘리먼트 상태를 관리합니다.
@@ -63,8 +62,6 @@ function ResponsiveAppBar() {
     // navigate 함수를 사용해 동적으로 페이지를 이동합니다.
     navigate(path);
   };
-
-  const boardRef = React.useRef<BoardHandle>(null);
 
   return (
     // 상단바 컴포넌트입니다.
@@ -160,11 +157,7 @@ function ResponsiveAppBar() {
                   {item.name}
                 </Button>
               ))}
-              <Button key={"새 글 작성"}
-                      onClick={() => boardRef.current?.handleOpen()}
-                      sx={{ my: 2, color: 'white', display: 'block' }} >
-                        새 글 작성
-              </Button>
+              
           </Box>
 
           {/* 사용자 설정 메뉴와 아바타입니다. */}

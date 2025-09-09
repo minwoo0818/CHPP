@@ -3,13 +3,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import { Box, Button, Pagination, PaginationItem } from '@mui/material';
+import { Box, Button, IconButton, Pagination, PaginationItem } from '@mui/material';
 import { GetBoards } from '../api/CategoryApi';
 import { useEffect, useRef, useState } from 'react';
 import type { Board_Type } from '../type';
 import { useLocation, useParams, Link } from 'react-router-dom';
 import type { BoardHandle } from '../Components/Board';
 import Board from '../Components/Board';
+import { ThumbDownAlt, ThumbUpAlt } from '@mui/icons-material';
 
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -53,6 +54,26 @@ export default function Category() {
   const totalPages = Math.ceil(boardData.length / ITEMS_PER_PAGE);
 
   
+  const handleGoodClick = (boardId: number) => {
+    setBoardData(prev =>
+      prev.map(b => b.boardId === boardId ? { ...b, good: b.good + 1 } : b)
+    );
+
+    // 선택된 게시글도 업데이트 (Board Dialog에 반영되도록)
+    setSelectedBoard(prev =>
+      prev && prev.boardId === boardId ? { ...prev, good: prev.good + 1 } : prev
+    );
+  };
+
+  const handleBadClick = (boardId: number) => {
+    setBoardData(prev =>
+      prev.map(b => b.boardId === boardId ? { ...b, bad: b.bad + 1 } : b)
+    );
+
+    setSelectedBoard(prev =>
+      prev && prev.boardId === boardId ? { ...prev, bad: prev.bad + 1 } : prev
+    );
+  };
 
 
   return (
@@ -73,7 +94,7 @@ export default function Category() {
         
         {paginatedData.map((board) => (
           
-          <Card sx={{ width: 345, height: 250 }} key={board.boardId}>
+          <Card sx={{ width: 350, height: 350 }} key={board.boardId}>
             <CardActionArea onClick={() => {
               setSelectedBoard(board);
               boardRef.current?.handleOpen(board);
@@ -81,7 +102,7 @@ export default function Category() {
                 
               <CardMedia
                 component="img"
-                height="140"
+                height="200"
                 image={`${BASE_URL}${board.pictureUrl}`}
                 alt={board.boardTitle}
               />
@@ -95,6 +116,35 @@ export default function Category() {
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {board.boardContent}
                 </Typography>
+
+                 {/* 👍👎 좋아요/싫어요 버튼 */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                    <IconButton
+                      color="primary"
+                      size="small"
+                      onClick={(e) => {
+                        e.stopPropagation(); // 카드 클릭 방지
+                        handleGoodClick(board.boardId!);
+                      }}
+                    >
+                      <ThumbUpAlt fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2" sx={{ mr: 2 }}>{board.good}</Typography>
+
+                    <IconButton
+                      color="secondary"
+                      size="small"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleBadClick(board.boardId!);
+                      }}
+                    >
+                      <ThumbDownAlt fontSize="small" />
+                    </IconButton>
+                    <Typography variant="body2">{board.bad}</Typography>
+                  </Box>
+
+
               </CardContent>
             </CardActionArea>
           </Card>
