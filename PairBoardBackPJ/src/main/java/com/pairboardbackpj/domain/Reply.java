@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 @Entity
 @Table(name="reply")
 @Getter
@@ -33,5 +32,5 @@ public class Reply {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Account_Id", unique = true)
-    private Account account;
+    private User user;
 }

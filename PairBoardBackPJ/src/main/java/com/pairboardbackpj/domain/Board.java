@@ -35,7 +35,7 @@ public class Board {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Account_Id", unique = true)
-    private Account account;
+    private User user;
 
     public void updateBoard(BoardDto boardDto){
         this.boardTitle = boardDto.getBoardTitle();
