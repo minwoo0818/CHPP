@@ -12,3 +12,18 @@ export const UpdateBoard = async(board:Board_Type): Promise<Board_Type> => {
     const response = await axios.put(`${BASE_URL}/category`,board);
     return response.data;
 }
+
+export const uploadImage = async (file: File): Promise<string> => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${BASE_URL}/upload`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) throw new Error("이미지 업로드 실패");
+
+  // 서버에서 "/uploads/파일명" 리턴
+  return await response.text();
+};

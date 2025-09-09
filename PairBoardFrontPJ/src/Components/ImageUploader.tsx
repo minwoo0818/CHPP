@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { uploadImage } from "../api/CategoryApi";
 
 interface PreviewImage {
   file: File | null;
@@ -35,16 +36,26 @@ const ItemImageUploader: React.FC<BoardProps> = ({BoardData,loadBoardData}) => {
   }, [BoardData]);
 
   /** 파일 선택 시 실행 */
-  const handleFileChange = (index: number, file: File | null) => {
-    if (!file) return;
+  const handleFileChange = async (index: number, file: File | null) => {
+  if (!file) return;
+
+  try {
+    const uploadedUrl = await uploadImage(file);
 
     const newImages = [...images];
     newImages[index] = {
       file,
-      previewUrl: URL.createObjectURL(file),
+      previewUrl: uploadedUrl, // 서버 URL로 교체
     };
     setImages(newImages);
-  };
+
+    // DB 저장용으로 BoardData.pictureUrl 반영
+    BoardData.pictureUrl = uploadedUrl;
+  } catch (error) {
+    console.error("이미지 업로드 중 오류:", error);
+  }
+};
+
 
   /** 드래그 앤 드롭 */
   const handleDrop = (index: number, e: React.DragEvent<HTMLDivElement>) => {

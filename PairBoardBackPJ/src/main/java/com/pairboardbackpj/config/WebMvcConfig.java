@@ -8,13 +8,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Value("${itemImgLocation}")
-    private String itemImgLocation;
+    @Value("${uploadPath}")
+    private String uploadPath; // file:///C:/CHPP/images
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // 예: http://localhost:8080/images/파일명 으로 접근 가능하게 매핑
+        // http://localhost:8080/images/xxx.png → C:/CHPP/images/xxx.png
         registry.addResourceHandler("/images/**")
-                .addResourceLocations("file:///" + itemImgLocation + "/");
+                .addResourceLocations(uploadPath);
     }
 }
