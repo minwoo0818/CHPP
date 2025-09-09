@@ -6,12 +6,12 @@ import ItemImageUploader from "./ImageUploader";
 import { UpdateBoard } from "../api/CategoryApi";
 
 export type BoardHandle = {
-    handleOpen: () => void;
+    handleOpen: (data: Board_Type | null) => void;
     handleClose: () => void;
 }
 
 type BoardProps = {
-    BoardData: Board_Type;
+    BoardData: Board_Type | null;
     loadBoardData: () => void;
 }
 
@@ -24,14 +24,47 @@ const Board = forwardRef<BoardHandle, BoardProps>(({BoardData, loadBoardData}, r
            bad: 0,
            pictureUrl: '',
            boardStatus: BoardStatus.NOTICE   
-    });
-    
-    const handleOpen = async() => {
-        await setBoardData(BoardData);
+    });    
+
+
+    const handleOpen = (data: Board_Type | null) => {
+        if (data && data.boardId)
+        {
+         //await 
+         setBoardData(data);         
+        }
+        else
+        {
+         //await 
+        setBoardData(
+        {
+            boardTitle: '',
+           boardContent: '',
+           good: 0,
+           bad: 0,
+           pictureUrl: '',
+           boardStatus: BoardStatus.NOTICE
+        }
+        );
+    }
         console.log("handleOpen");
+    
         setOpen(true);
-    };
-    const handleClose = () => setOpen(false);
+
+    }; 
+
+
+    const handleClose = () => {         
+        setBoardData({         
+           boardTitle: '',
+           boardContent: '',
+           good: 0,
+           bad: 0,
+           pictureUrl: '',
+           boardStatus: BoardStatus.NOTICE   
+    });
+        setOpen(false);
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -89,7 +122,7 @@ const Board = forwardRef<BoardHandle, BoardProps>(({BoardData, loadBoardData}, r
     }
 
     useEffect(() => {
-        if (open) {
+        if (open && BoardData && BoardData.boardId) {
             setBoardData(BoardData); // Dialog 열려있을 때만 최신 props 반영
         }
     }, [BoardData, open]);

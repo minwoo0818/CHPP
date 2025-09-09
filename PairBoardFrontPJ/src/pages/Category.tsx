@@ -3,13 +3,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import { Pagination, PaginationItem } from '@mui/material';
+import { Box, Button, Pagination, PaginationItem } from '@mui/material';
 import { GetBoards } from '../api/CategoryApi';
 import { useEffect, useRef, useState } from 'react';
 import type { Board_Type } from '../type';
 import { useLocation, useParams, Link } from 'react-router-dom';
 import type { BoardHandle } from '../Components/Board';
 import Board from '../Components/Board';
+
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 const ITEMS_PER_PAGE = 20;
@@ -32,9 +33,7 @@ export default function Category() {
         setBoardData(res);
       })
       .catch(err => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      .finally(() => setIsLoading(false));      
   };
 
   useEffect(() => {
@@ -53,15 +52,33 @@ export default function Category() {
   const paginatedData = boardData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   const totalPages = Math.ceil(boardData.length / ITEMS_PER_PAGE);
 
+  
+
+
   return (
     <>
+ {/* '새 글 작성' 버튼 추가 */}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', padding: '10px 20px' }}>
+        <Button variant="contained" 
+                onClick={() => {   
+                  setSelectedBoard(null);          
+                  boardRef.current?.handleOpen(null);
+                }}>
+          새 글 작성
+        </Button>
+      </Box>
+
+
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
+        
         {paginatedData.map((board) => (
+          
           <Card sx={{ width: 345, height: 250 }} key={board.boardId}>
             <CardActionArea onClick={() => {
               setSelectedBoard(board);
-              boardRef.current?.handleOpen()
+              boardRef.current?.handleOpen(board);
               }}>
+                
               <CardMedia
                 component="img"
                 height="140"
@@ -83,8 +100,14 @@ export default function Category() {
           </Card>
         ))}
       </div>
+
+
       {/* ✅ 선택된 게시물만 있을 때 Board 렌더링 */}
-      {selectedBoard && (<Board ref={boardRef} BoardData={selectedBoard} loadBoardData={loadBoardData}></Board>)}
+      {/* {selectedBoard && ( */}
+        <Board ref={boardRef} BoardData={selectedBoard} loadBoardData={loadBoardData}></Board>
+        {/* )}  */}
+     
+
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
         <Pagination
           page={page}
