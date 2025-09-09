@@ -13,7 +13,7 @@ export const UpdateBoard = async(board:Board_Type): Promise<Board_Type> => {
     return response.data;
 }
 
-export const uploadImage = async (file: File): Promise<string> => {
+export const UploadImage = async (file: File): Promise<string> => {
   const formData = new FormData();
   formData.append("file", file);
 
@@ -27,3 +27,8 @@ export const uploadImage = async (file: File): Promise<string> => {
   // 서버에서 "/uploads/파일명" 리턴
   return await response.text();
 };
+
+export const CreateBoard = async (data: Board_Type) => {
+  const res = await axios.post(`${BASE_URL}/api/categroy`, data);
+  return res.data;
+}

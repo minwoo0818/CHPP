@@ -3,10 +3,7 @@ package com.pairboardbackpj.domain;
 import com.pairboardbackpj.constant.BoardStatus;
 import com.pairboardbackpj.dto.BoardDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name="board")

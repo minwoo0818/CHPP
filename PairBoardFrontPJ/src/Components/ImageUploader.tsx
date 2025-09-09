@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { uploadImage } from "../api/CategoryApi";
+import { UploadImage } from "../api/CategoryApi";
+import type { Board_Type } from "../type";
 
 interface PreviewImage {
   file: File | null;
@@ -40,7 +41,7 @@ const ItemImageUploader: React.FC<BoardProps> = ({BoardData,loadBoardData}) => {
   if (!file) return;
 
   try {
-    const uploadedUrl = await uploadImage(file);
+    const uploadedUrl = await UploadImage(file);
 
     const newImages = [...images];
     newImages[index] = {
