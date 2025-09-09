@@ -5,6 +5,8 @@ import Category from './pages/Category';
 import ResponsiveAppBar from './Components/App_bar';
 import Main from './pages/Main';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
 // import Board from './pages/Board';
 // import './App.css'
 
@@ -16,7 +18,9 @@ function App() {
     <>
       <ResponsiveAppBar></ResponsiveAppBar>
         <Routes>
-          <Route path='/' element={<Main></Main>}></Route>
+          <Route path='/' element={<Login />}></Route>
+          <Route path="/login" element={<Login />} />
+          <Route path='/register' element={<Register></Register>}></Route>
           <Route path='/category/:type' element={<Category></Category>}></Route>
         </Routes>
     </>

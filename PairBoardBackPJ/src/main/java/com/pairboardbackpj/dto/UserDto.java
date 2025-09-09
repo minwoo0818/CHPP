@@ -6,10 +6,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AccountDto {
+public class UserDto {
     private String id;
 
-    private String name;
+    private String username;
 
     private String password;
 
@@ -20,4 +20,6 @@ public class AccountDto {
     private Integer phoneNumber;
 
     private Integer level;
+
+    private String role;
 }

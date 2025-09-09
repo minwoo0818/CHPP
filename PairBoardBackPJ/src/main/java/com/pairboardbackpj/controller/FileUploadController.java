@@ -1,6 +1,6 @@
 package com.pairboardbackpj.controller;
 
-import com.pairboardbackpj.properties.FileUploadProperties;
+import com.pairboardbackpj.Components.FileUploadProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

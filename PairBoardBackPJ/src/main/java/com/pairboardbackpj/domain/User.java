@@ -1,27 +1,23 @@
 package com.pairboardbackpj.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name="account")
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Account {
+public class User {
 
     @Id
     @Column(name = "Account_Id")
     private String id;
 
-    private String name;
+    private String username;
     private String password;
 
-    @Column(unique = true)
     private String nickname;
 
     @Column(unique = true)
@@ -29,5 +25,5 @@ public class Account {
     private Integer phoneNumber;
     private Integer level;
 
-
+    private String role;
 }
