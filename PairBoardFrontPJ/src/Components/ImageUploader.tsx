@@ -82,6 +82,7 @@ const ItemImageUploader: React.FC<BoardProps> = ({BoardData,loadBoardData}) => {
                 src={image.previewUrl}
                 alt={`상품이미지 ${index + 1}`}
                 className="preview-img w-32 h-32 object-cover mx-auto"
+                sizes="80%"
               />
             ) : (
               <span>등록된 이미지가 없습니다. 이미지를 업로드하거나 여기에 드래그하세요</span>
