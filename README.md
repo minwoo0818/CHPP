@@ -1,6 +1,7 @@
 # 5 CHPP(Cat_drip Homepage Pair Programing)
 
 1. [개요] 페어(파트너) 및 프로젝트 주제 소개
+
    김억근. 류민우 - 종합 게시판
    
 3. [개요] 페어 협업 방식과 작업 기록 설명
