@@ -1,9 +1,11 @@
-# 5 CHPP( Pair Programing)
+# 5 CHPP(Cat_drip Homepage Pair Programing)
 
 1. [개요] 페어(파트너) 및 프로젝트 주제 소개
-
+    김억근. 류민우 - 종합 게시판
+    
 2. [개요] 페어 협업 방식과 작업 기록 설명
-
+    트렐로 참고 - https://trello.com/b/xVOlW8ao/%EC%BD%94%EB%93%9C%ED%95%98%EC%9A%B0%EC%8A%A4-%ED%8E%98%EC%96%B4-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D
+    
 3. [개요] 요구 사항/기능 설계, DB ERD 흐름 및 구조 설명
 
 4. [시연] 전체 구현 기능 실제 작동 시연
