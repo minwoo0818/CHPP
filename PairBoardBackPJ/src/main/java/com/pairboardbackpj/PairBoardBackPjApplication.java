@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class PairBoardBackPjApplication implements CommandLineRunner {
@@ -18,8 +20,41 @@ public class PairBoardBackPjApplication implements CommandLineRunner {
 
     private final BoardRepository boardRepository;
 
+    List<String> imageFiles = List.of(
+            "0573b3d7-9c48-448f-a65e-49ff88bf791b_95e29aa5-b6c5-49d6-b193-bc5ea6aae7d5.jpg",
+            "272bbde7-7cf9-4d71-a8bd-12ae110981c4_다운로드 (2).jpg", "281dad30-77bc-4213-9ea9-779dbbbcbf20_둘리3.jpg",
+            "2ff22753-8b49-44e3-817b-2288f7124d49_김영광2.jpg", "3e7a0192-3320-4381-83d6-20382fe50cb5_2f913133-869e-43cb-854f-cde871760c17.png",
+            "506d3654-8201-4c02-9648-025b31d57130_24e0b5ca-67ad-47d6-be82-a4bffe1139b3.jpg",
+            "5c3056ef-526e-4b91-9fb4-3096fc1d5e39_test2.jpg",
+            "6557274f-7ea3-4462-a109-34f1d997ff4a_다운로드 (3).jpg",
+            "679137a4-daeb-4820-b9d2-94cc3366ecf0_794f7803-7a62-455e-bc63-9345929225c4.png",
+            "6eaf6a75-9a1d-4e00-b286-e5299ad4f86b_스크린샷 2025-07-08 141154.png",
+            "775cf625-ce4e-4900-a5c3-884b1df6a274_ab708968-e862-40fb-98ca-af47989624f3.png", "8cafddba-93e6-4da5-8626-a61c3c185ef4_56e1ff3d-8afd-4663-b0b3-b404aef71fd1.png"
+    );
+
+
     @Override
     public void run(String... args) throws Exception{
+
+        BoardStatus[] statuses = BoardStatus.values();
+        int imageIndex = 0;
+
+        for (BoardStatus status : statuses) {
+            for (int i = 1; i <= 25; i++) {
+                String imageName = imageFiles.get(imageIndex % imageFiles.size());
+                boardRepository.save(Board.builder()
+                        .boardTitle(status.name() + " 게시글 " + i)
+                        .boardContent("안녕하세요! " + status.name() + " 더미 데이터 " + i + "번째 글입니다.")
+                        .good((int)(Math.random() * 100))
+                        .bad((int)(Math.random() * 10))
+                        .pictureUrl("/images/" + imageName)
+                        .boardStatus(status)
+                        .build());
+                imageIndex++;
+            }
+        }
+
+
 //        boardRepository.save(Board.builder()
 //                        .boardTitle("첫 번째 게시글")
 //                        .boardContent("안녕하세요! 더미 데이터 첫 번째 글입니다.")
