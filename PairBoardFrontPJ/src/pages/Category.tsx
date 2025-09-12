@@ -96,10 +96,11 @@ export default function Category() {
           
           <Card sx={{ width: 350, height: 350 }} key={board.boardId}>
             <CardActionArea onClick={() => {
+              
               setSelectedBoard(board);
               boardRef.current?.handleOpen(board);
               }}>
-                
+               
               <CardMedia
                 component="img"
                 height="200"

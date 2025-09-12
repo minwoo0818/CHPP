@@ -71,4 +71,19 @@ public class BoardService {
         Board board = boardRepository.findById(boardDto.getBoardId()).orElseThrow(EntityNotFoundException::new);
         board.updateBoard(boardDto);
     }
+
+    public void createBoard(BoardDto boardDto){
+        System.out.println("createBoard 실행됨");
+
+        Board board = Board.builder()
+                .boardTitle(boardDto.getBoardTitle())
+                .boardContent(boardDto.getBoardContent())
+                .pictureUrl(boardDto.getPictureUrl())
+                .boardStatus(boardDto.getBoardStatus())
+                .good(0)
+                .bad(0)
+                .build();
+        boardRepository.save(board);
+
+    }
 }

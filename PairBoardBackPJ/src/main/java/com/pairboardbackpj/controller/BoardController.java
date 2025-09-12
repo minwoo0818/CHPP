@@ -30,6 +30,11 @@ public class BoardController {
         return boardService.findByboardStatus(status);
     }
 
+    @PostMapping("/category")
+    public void createBoard(@RequestBody BoardDto boardDto) {
+        boardService.createBoard(boardDto);
+    }
+
     @PutMapping("/category")
     public void updateBoard(@RequestBody BoardDto boardDto) {
         boardService.updateBoard(boardDto);

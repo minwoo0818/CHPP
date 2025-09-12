@@ -2,7 +2,8 @@ package com.pairboardbackpj.dto;
 
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -11,7 +12,7 @@ import java.util.Date;
 @Builder
 public class ReplyDto {
 
-    private Integer replyId;
+    private Long replyId;
 
     private String replyContent;
 
@@ -21,7 +22,11 @@ public class ReplyDto {
 
     private Integer replyParentId;
 
+    private Integer boardId;
+
+    private String Id;
+
     private Integer totalCountReply;
 
-//    private Date regTime;
+    private LocalDateTime regTime;
 }

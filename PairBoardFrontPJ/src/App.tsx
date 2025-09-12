@@ -3,8 +3,8 @@
 // import SearchIcon from '@mui/icons-material/Search';
 import Category from './pages/Category';
 import ResponsiveAppBar from './Components/App_bar';
-import Main from './pages/Main';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+
+import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 // import Board from './pages/Board';

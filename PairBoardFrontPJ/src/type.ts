@@ -8,11 +8,13 @@ export type Board_Type = {
     boardStatus: BoardStatus;
 }
 
-export enum BoardStatus{
-    GAME = "GAME", 
-    SPORTS = "SPORTS", 
-    MOVIE = "MOVIE", 
-    CAR = "CAR",
-    COMIC = "COMIC", 
-    NOTICE = "NOTICE"
-}
+export const BoardStatus = {
+  GAME: "GAME",
+  SPORTS: "SPORTS",
+  MOVIE: "MOVIE",
+  CAR: "CAR",
+  COMIC: "COMIC",
+  NOTICE: "NOTICE"
+} as const;
+
+export type BoardStatus = typeof BoardStatus[keyof typeof BoardStatus];

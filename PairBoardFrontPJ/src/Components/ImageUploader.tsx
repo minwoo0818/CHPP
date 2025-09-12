@@ -12,7 +12,7 @@ type BoardProps = {
     loadBoardData: () => void;
 }
 
-const ItemImageUploader: React.FC<BoardProps> = ({BoardData,loadBoardData}) => {
+const ItemImageUploader: React.FC<BoardProps> = ({BoardData}) => {
   // 5개의 이미지 슬롯을 미리 준비
   const [images, setImages] = useState<PreviewImage[]>(
     Array.from({ length: 1 }, () => ({ file: null, previewUrl: null }))

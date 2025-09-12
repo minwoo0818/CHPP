@@ -1,14 +1,20 @@
 itemImgLocation: C:/CHPP/images
 uploadPath: file:///C:/CHPP/images
 
+#Windows
+#uploadPath : C://temp/images...
+
+#Linux
+#uploadPath : /home/temp/...
+
 spring:
   application:
     name: PairBoardBackPJ
   datasource:
-    url: jdbc:mysql://localhost:3306/pbdb
+    url: jdbc:mariadb://localhost:3306/pbdb
     username: root
     password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:

@@ -3,7 +3,7 @@ import { type Board_Type } from "../type";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-export const GetBoards = async(type: string): Promise<Board_Type[]> => {
+export const GetBoards = async(type: string | undefined): Promise<Board_Type[]> => {
     const response = await axios.get(`${BASE_URL}/category/${type}`);
     return response.data;
 }
@@ -29,6 +29,6 @@ export const UploadImage = async (file: File): Promise<string> => {
 };
 
 export const CreateBoard = async (data: Board_Type) => {
-  const res = await axios.post(`${BASE_URL}/api/categroy`, data);
+  const res = await axios.post(`${BASE_URL}/category`, data);
   return res.data;
 }

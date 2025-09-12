@@ -12,11 +12,11 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, type To } from 'react-router-dom';
 
 
 // 페이지 목록과 사용자 설정 메뉴 목록을 배열로 정의합니다.
-const pages = ['공지사항', '모든게시물', '만화', '게임', '자동차', '스포츠', '영화'];
+// const pages = ['공지사항', '모든게시물', '만화', '게임', '자동차', '스포츠', '영화'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const navItems = [
@@ -56,7 +56,7 @@ function ResponsiveAppBar() {
 
   const navigate = useNavigate(); // useNavigate 훅을 사용해 navigate 함수를 가져옵니다.
 
-  const handleClick = (path) => {
+  const handleClick = (path: To) => {
     // 버튼 클릭 시 호출되는 함수입니다.
     console.log(`${path}로 페이지 이동 시작...`);
     // navigate 함수를 사용해 동적으로 페이지를 이동합니다.

@@ -1,9 +1,9 @@
-import { Box, Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, IconButton, Radio, RadioGroup, Stack, TextField, Typography } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, FormControlLabel, FormLabel, IconButton, Radio, RadioGroup, Stack, TextField, Typography } from "@mui/material";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { BoardStatus, type Board_Type } from "../type";
 import { ThumbDownAlt, ThumbUpAlt } from "@mui/icons-material";
 import ItemImageUploader from "./ImageUploader";
-import { UpdateBoard } from "../api/CategoryApi";
+import { CreateBoard, UpdateBoard } from "../api/CategoryApi";
 
 export type BoardHandle = {
     handleOpen: (data: Board_Type | null) => void;
@@ -108,7 +108,15 @@ const Board = forwardRef<BoardHandle, BoardProps>(({BoardData, loadBoardData}, r
     }));
 
     const handleSave = async() => {
-        await UpdateBoard(boardData);
+        console.log("저장 실행됨");
+        if (boardData.boardId) 
+        {
+            await UpdateBoard(boardData); // 수정
+        } 
+        else 
+        {
+            await CreateBoard(boardData); // 새 글 등록
+        }
         loadBoardData();
         setBoardData({
             boardTitle: '',
