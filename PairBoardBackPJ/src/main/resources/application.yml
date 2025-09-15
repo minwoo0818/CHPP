@@ -10,12 +10,4 @@ uploadPath: file:///C:/CHPP/images
 spring:
   application:
     name: PairBoardBackPJ
-  datasource:
-    url: jdbc:mariadb://localhost:3306/pbdb
-    username: root
-    password: 1234
-    driver-class-name: org.mariadb.jdbc.Driver
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: create
+

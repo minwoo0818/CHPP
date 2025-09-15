@@ -8,6 +8,7 @@ export type Board_Type = {
     boardStatus: BoardStatus;
 }
 
+
 export const BoardStatus = {
   GAME: "GAME",
   SPORTS: "SPORTS",
